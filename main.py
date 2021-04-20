@@ -3,6 +3,20 @@ from pointCloud import compute_pointCloud, plot_pointCloud
 from plotMesh import plot_mesh
 from depthMap import depth_map
 
+
+''' Comment this code out when you want to run your own examples '''
+pathToLeftImage = input("Please input the path to your left image:\n")
+pathToRightImage = input("Please input the path to your right image:\n")
+
+print(f'The paths to the images are: {pathToLeftImage}, {pathToRightImage}')
+
+imgL = cv2.imread(pathToLeftImage,cv2.COLOR_RGB2GRAY)[..., ::-1]
+imgR = cv2.imread(pathToRightImage,cv2.COLOR_RGB2GRAY)[..., ::-1]
+depth_map(imgL1, imgR1, 16, 5, 'ex/')
+pc = compute_pointCloud('ex/color.png', 'ex/disparity.png')
+plot_pointCloud(pc)
+plot_mesh(pc)
+
 ''' Uncomment these images if you want to run an example image reconstruction '''
 # imgL1 = cv2.imread('ex1/left.png',cv2.COLOR_RGB2GRAY)[..., ::-1]
 # imgR1 = cv2.imread('ex1/right.png',cv2.COLOR_RGB2GRAY)[..., ::-1]
@@ -53,15 +67,3 @@ from depthMap import depth_map
 # plot_pointCloud(pc)
 # plot_mesh(pc)
 
-''' Comment this code out when you want to run your own examples '''
-pathToLeftImage = input("Please input the path to your left image:\n")
-pathToRightImage = input("Please input the path to your right image:\n")
-
-print(f'The paths to the images are: {pathToLeftImage}, {pathToRightImage}')
-
-imgL = cv2.imread(pathToLeftImage,cv2.COLOR_RGB2GRAY)[..., ::-1]
-imgR = cv2.imread(pathToRightImage,cv2.COLOR_RGB2GRAY)[..., ::-1]
-depth_map(imgL1, imgR1, 16, 5, 'ex/')
-pc = compute_pointCloud('ex/color.png', 'ex/disparity.png')
-plot_pointCloud(pc)
-plot_mesh(pc)
